@@ -55,7 +55,7 @@ class CartItem(models.Model):
 class Order(models.Model):
     order_id = models.CharField(max_length=300)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_created = models.DateField(auto_now_add=True)
     status = models.BooleanField(default=False)
 
