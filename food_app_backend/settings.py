@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'foods',
+    'rest_framework',
+    'corsheaders',
+    'rest_framework.authtoken'
+    
 ]
 
 MIDDLEWARE = [
@@ -48,6 +54,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication', 
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata',
+    
+}
 
 ROOT_URLCONF = 'food_app_backend.urls'
 
@@ -68,6 +86,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'food_app_backend.wsgi.application'
+
+AUTH_USER_MODEL = 'accounts.User'
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+
+CSRF_TRUSTED_ORIGINS = ['https://*.pythonanywhere.com',]
 
 
 # Database
@@ -112,10 +140,17 @@ USE_I18N = True
 USE_TZ = True
 
 
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+
 STATIC_URL = 'static/'
+
+MEDIA_ROOT = BASE_DIR/ 'media'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

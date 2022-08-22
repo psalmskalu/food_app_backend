@@ -15,11 +15,21 @@ class FoodCategory(models.Model):
 class Food(models.Model):
     name = models.CharField(max_length=200)
     category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE)
+    cover_photo = models.ImageField(upload_to='foods')
     price = models.DecimalField(max_digits=20, decimal_places=2)
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'foods'
+
+
+class FoodPhoto(models.Model):
+    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='foods')
+
+    class Meta:
+        db_table = 'food_photos'
+
 
 
 class Cart(models.Model):
