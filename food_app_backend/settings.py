@@ -91,7 +91,6 @@ AUTH_USER_MODEL = 'accounts.User'
 
 AUTHENTICATION_BACKENDS = [
     'accounts.backends.EmailBackend',
-    'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
 
