@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     phone = models.CharField(max_length=200, blank=True, null=True)
-    address = models.TextField
+    address = models.TextField(null=True, blank=True)
     photo = models.ImageField(null=True, blank=True, upload_to='users')
 
     class Meta:
