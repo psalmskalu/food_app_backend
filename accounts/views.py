@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from foods.models import Food
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -40,10 +41,12 @@ def signin(request):
             login(request, user)
                         
             token, _ = Token.objects.get_or_create(user=user)
+            foods =  Food.objects.all()
 
             dashboard = {}
             dashboard["user"] = user
             dashboard["token"] = token
+            dashboard["foods"] = foods
                           
              
             serializer = DashboardSerializer(dashboard, context = {'request':request})

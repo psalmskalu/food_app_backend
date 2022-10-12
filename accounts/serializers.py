@@ -1,3 +1,4 @@
+from foods.serializers import FoodSerializer
 from rest_framework import serializers
 from .models import User
 
@@ -28,3 +29,4 @@ class DashboardSerializer(serializers.Serializer):
 
     user = UserSerializer(read_only=True)
     token = serializers.CharField()
+    foods = FoodSerializer(many=True, read_only=True)
